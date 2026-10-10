@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Light Speed icon</title>
+  <desc id="desc">A modern speed-themed icon with a lightning bolt and motion streaks.</desc>
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#c9e9ff" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#d8d8ff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#f4d5ff" stop-opacity="0.8"/>
+    </radialGradient>
+    <linearGradient id="boltGradient" x1="18%" x2="84%" y1="20%" y2="82%">
+      <stop offset="0%" stop-color="#5ee7ff"/>
+      <stop offset="36%" stop-color="#2f80ff"/>
+      <stop offset="66%" stop-color="#9a6cff"/>
+      <stop offset="100%" stop-color="#ff7d5e"/>
+    </linearGradient>
+    <linearGradient id="ringGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#7ad8ff"/>
+      <stop offset="30%" stop-color="#7b8dff"/>
+      <stop offset="60%" stop-color="#d48cff"/>
+      <stop offset="100%" stop-color="#ffb36b"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="256" cy="256" r="204" fill="url(#bgGlow)"/>
+  <circle cx="256" cy="256" r="188" fill="none" stroke="url(#ringGradient)" stroke-width="18" opacity="0.9"/>
+  <circle cx="256" cy="256" r="164" fill="none" stroke="#1f2d4d" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="10 18"/>
+
+  <g fill="none" stroke="#2f80ff" stroke-linecap="round" stroke-width="16" opacity="0.9">
+    <path d="M110 190 L152 160"/>
+    <path d="M70 270 L120 248"/>
+    <path d="M405 185 L360 160"/>
+    <path d="M446 270 L392 247"/>
+    <path d="M178 84 L194 134"/>
+    <path d="M334 84 L318 134"/>
+  </g>
+
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="110" cy="190" r="10"/>
+    <circle cx="70" cy="270" r="8"/>
+    <circle cx="405" cy="185" r="10"/>
+    <circle cx="446" cy="270" r="8"/>
+    <circle cx="178" cy="84" r="8"/>
+    <circle cx="334" cy="84" r="8"/>
+  </g>
+
+  <path d="M288 98 L180 246 L245 246 L212 414 L338 228 L269 228 Z" fill="url(#boltGradient)" stroke="#ffffff" stroke-opacity="0.66" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M289 98 L180 246 L245 246 L212 414 L338 228 L269 228 Z" fill="none" stroke="#eaf5ff" stroke-opacity="0.38" stroke-width="4" stroke-linejoin="round"/>
+
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="394" cy="112" r="16"/>
+    <circle cx="126" cy="354" r="12"/>
+  </g>
+</svg>

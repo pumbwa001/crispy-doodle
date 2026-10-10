@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#d7f3ff">
+    <title>Light Speed</title>
+    <link rel="icon" type="image/svg+xml" href="light-speed-icon.svg">
+    <link rel="stylesheet" href="Style.CSS">
+  </head>
+  <body>
+    <main class="page">
+      <h1><span class="light">light</span> <span class="speed">speed</span></h1>
+      <button class="camera-button" type="button" aria-label="Open camera" title="Open camera">
+        <svg class="camera" viewBox="0 0 48 40" aria-hidden="true">
+          <path d="M6 10h8l3-5h14l3 5h8a3 3 0 0 1 3 3v20a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V13a3 3 0 0 1 3-3Z" />
+          <circle cx="24" cy="22" r="8" />
+          <circle class="lens" cx="24" cy="22" r="4" />
+        </svg>
+      </button>
+      <button class="saved-pictures-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="3" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <path d="m21 15-5-5L5 21" />
+        </svg>
+        <span>Saved pictures</span>
+      </button>
+      <button class="handwriting-trainer-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 17.5V21h3.5L18 8.5 14.5 5 3 16.5Z" />
+          <path d="M13.5 4.5l3 3" />
+        </svg>
+        <span>Teach handwriting</span>
+      </button>
+    </main>
+    <dialog class="camera-dialog" aria-labelledby="camera-title">
+      <div class="dialog-header">
+        <h2 id="camera-title">Take a picture</h2>
+        <button class="close-button" type="button" aria-label="Close camera">×</button>
+      </div>
+      <p class="camera-status" role="status" aria-live="polite">Starting camera…</p>
+      <div class="camera-preview">
+        <video class="camera-video" autoplay muted playsinline></video>
+        <canvas class="camera-canvas" hidden></canvas>
+      </div>
+      <section class="camera-soft-copy" aria-labelledby="soft-copy-title" hidden>
+        <h3 id="soft-copy-title">Soft copy</h3>
+        <div class="text-format-controls" aria-label="Text format options">
+          <button class="format-button is-active" type="button" data-format="original">Original</button>
+          <button class="format-button" type="button" data-format="uppercase">UPPERCASE</button>
+          <button class="format-button" type="button" data-format="lowercase">lowercase</button>
+          <button class="format-button" type="button" data-format="title">Title Case</button>
+          <button class="format-button" type="button" data-format="sentence">Sentence case</button>
+        </div>
+        <button class="output-size-button" type="button" aria-expanded="false">Maximize text</button>
+        <textarea class="camera-ocr-output" readonly aria-live="polite" placeholder="Text recognized from your picture will appear here."></textarea>
+        <button class="camera-copy-button" type="button" hidden>Copy text</button>
+        <button class="camera-share-button" type="button" hidden>Share text</button>
+      </section>
+      <div class="camera-actions">
+        <button class="folder-button" type="button">Choose save folder</button>
+        <button class="capture-button" type="button" disabled>Capture &amp; save</button>
+        <button class="retake-button" type="button" hidden>Retake</button>
+      </div>
+    </dialog>
+    <dialog class="gallery-dialog" aria-labelledby="gallery-title">
+      <div class="dialog-header">
+        <h2 id="gallery-title">Saved pictures</h2>
+        <button class="gallery-close-button" type="button" aria-label="Close saved pictures">×</button>
+      </div>
+      <div class="gallery-toolbar">
+        <p class="gallery-status" role="status" aria-live="polite"></p>
+        <input class="gallery-image-input" id="gallery-image-input" type="file" accept="image/*" multiple>
+        <label class="gallery-upload-button" for="gallery-image-input">Add image</label>
+        <button class="gallery-folder-button" type="button">Open folder</button>
+      </div>
+      <div class="picture-gallery"></div>
+    </dialog>
+    <dialog class="handwriting-dialog" aria-labelledby="handwriting-title">
+      <div class="dialog-header">
+        <h2 id="handwriting-title">Teach handwriting</h2>
+        <button class="handwriting-close-button" type="button" aria-label="Close handwriting trainer">×</button>
+      </div>
+      <p class="handwriting-status" role="status" aria-live="polite">Choose a character, draw it in the box, and save the sample. Saved samples can help with clear characters when you convert a picture.</p>
+      <div class="handwriting-controls">
+        <label class="handwriting-letter-picker" for="handwriting-letter-select">
+          Character
+          <select id="handwriting-letter-select" class="handwriting-letter-select" aria-label="Select a letter, number, or punctuation mark to train">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+            <optgroup label="Numbers">
+              <option value="0">0 (zero)</option>
+              <option value="1">1 (one)</option>
+              <option value="2">2 (two)</option>
+              <option value="3">3 (three)</option>
+              <option value="4">4 (four)</option>
+              <option value="5">5 (five)</option>
+              <option value="6">6 (six)</option>
+              <option value="7">7 (seven)</option>
+              <option value="8">8 (eight)</option>
+              <option value="9">9 (nine)</option>
+            </optgroup>
+            <optgroup label="Punctuation">
+              <option value=".">. (period)</option>
+              <option value=",">, (comma)</option>
+              <option value="!">! (exclamation mark)</option>
+              <option value="?">? (question mark)</option>
+              <option value=":">: (colon)</option>
+              <option value=";">; (semicolon)</option>
+              <option value="'">' (apostrophe)</option>
+              <option value="&quot;">&quot; (quotation mark)</option>
+              <option value="-">- (hyphen)</option>
+              <option value="(">( (left parenthesis)</option>
+              <option value=")">) (right parenthesis)</option>
+              <option value="/">/ (slash)</option>
+            </optgroup>
+          </select>
+        </label>
+        <div class="handwriting-action-group">
+          <button class="handwriting-clear-button" type="button">Clear</button>
+          <button class="handwriting-save-button" type="button">Save sample</button>
+        </div>
+      </div>
+      <div class="handwriting-canvas-wrap">
+        <canvas class="handwriting-canvas" width="320" height="320" aria-label="Write a character"></canvas>
+      </div>
+      <div class="handwriting-preview-block">
+        <h3>Training library</h3>
+        <div class="handwriting-letter-grid" aria-live="polite"></div>
+      </div>
+      <div class="handwriting-bottom-actions">
+        <button class="handwriting-recognize-button" type="button">Test recognition</button>
+        <button class="handwriting-clear-all-button" type="button">Reset training</button>
+      </div>
+    </dialog>
+    <dialog class="help-dialog" aria-labelledby="help-title">
+      <div class="dialog-header">
+        <h2 id="help-title">Welcome to Light Speed</h2>
+        <button class="help-close-button" type="button" aria-label="Close help">×</button>
+      </div>
+      <div class="help-content">
+        <p class="help-intro"><strong>Light Speed is your best choice for a simple, convenient way to capture pictures, turn text in images into copyable words, keep track of pictures, and practice recognizing handwriting—all in one place.</strong></p>
+        <p>Use the camera for a quick capture, Saved pictures to manage or import images, and Teach handwriting to try a simple character-recognition exercise. You can copy or share converted text with other apps, or download it as a text file when system sharing is unavailable.</p>
+
+        <section aria-labelledby="help-camera-title">
+          <h3 id="help-camera-title">Camera and text recognition</h3>
+          <ol>
+            <li>Choose the camera button and allow camera access when your browser asks. Light Speed only uses the camera while the camera screen is open.</li>
+            <li>Place the writing in good light, hold the camera steady, and choose <strong>Capture &amp; save</strong>. Choose <strong>Retake</strong> if you want another picture.</li>
+            <li>Light Speed saves the picture in Saved pictures and tries to recognize text in it. Use the case buttons to change the displayed text, <strong>Maximize text</strong> to enlarge it, <strong>Copy text</strong> to copy it, or <strong>Share text</strong> to send it to another app.</li>
+          </ol>
+          <p>Camera access generally requires a secure website connection (HTTPS) or localhost. If the camera does not start, check your browser's site permissions and make sure another app is not using it. Text recognition happens in this browser; results can be imperfect, especially for handwriting, blurry images, or low light.</p>
+        </section>
+
+        <section aria-labelledby="help-pictures-title">
+          <h3 id="help-pictures-title">Saved pictures</h3>
+          <ul>
+            <li>Captured pictures are kept in this browser's local Saved pictures library. On browsers that support folder access, you can also choose a folder to save or view files there.</li>
+            <li>On browsers without folder access, captures are downloaded to your device. You can use <strong>Add image</strong> to import pictures into the local library.</li>
+            <li>Choose <strong>Convert to soft copy</strong> to recognize text in a saved image. Samples saved in Teach handwriting can help with clear, separated letters, numbers, and punctuation marks. Expand the text box, change letter case, copy the result, or share it with another app.</li>
+            <li>Choose <strong>Delete picture</strong> to permanently remove an image. Confirm the prompt before it is deleted. Deleting a library picture removes it from this app; deleting a folder picture removes the file from the selected folder.</li>
+          </ul>
+          <p>Saved-library pictures stay in this browser on this device; they are not automatically synced or backed up. Clearing browser site data can remove them. Downloaded or folder-saved copies are separate files.</p>
+        </section>
+
+        <section aria-labelledby="help-handwriting-title">
+          <h3 id="help-handwriting-title">Teach handwriting</h3>
+          <ol>
+            <li>Select a letter, number, or punctuation mark and draw it in the box with your finger, mouse, or stylus.</li>
+            <li>Choose <strong>Save sample</strong> to add that drawing to the on-screen training library. Save more examples of a character to give the recognizer more examples to compare.</li>
+            <li>Draw a character and choose <strong>Test recognition</strong> to compare it with the saved samples. Use <strong>Clear</strong> to clear the drawing or <strong>Reset training</strong> to clear all saved samples.</li>
+          </ol>
+          <p>This is an experimental pattern-matching aid, not a replacement for the text reader or a full handwriting model. Saved samples stay in this browser on this device and may help with clear, separated characters during picture conversion. It only adjusts characters when the image can be split into characters and a sample match is clear; connected cursive, unusual fonts, or unclear images may not match. Recognition can still be wrong, so check the result. The original text reader is used whenever a sample match is uncertain. Reset training removes your saved samples.</p>
+        </section>
+
+        <section aria-labelledby="help-privacy-title">
+          <h3 id="help-privacy-title">Privacy and using Light Speed</h3>
+          <p>Pictures, converted text, and handwriting samples are handled on your device by the app; camera permission is controlled by your browser. Sharing opens your device's share menu when supported. Otherwise, Light Speed downloads converted text as a .txt file that you can open or attach in another app. Keep a separate copy of important pictures, and only grant camera or folder access when you choose to use those features. For the best experience on a phone, open Light Speed in an up-to-date browser and allow camera access when prompted.</p>
+        </section>
+      </div>
+    </dialog>
+    <button class="help-button" type="button" aria-haspopup="dialog">Help</button>
+    <script src="vendor/tesseract/tesseract.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

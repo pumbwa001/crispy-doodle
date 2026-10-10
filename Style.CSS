@@ -1,0 +1,1022 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  background: linear-gradient(
+    135deg,
+    #d7f3ff 0%,
+    #dcdcff 30%,
+    #f2dfff 55%,
+    #d9f5f1 78%,
+    #fff0d8 100%
+  );
+}
+
+.page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+
+.light {
+  color: #1677ff;
+}
+
+.speed {
+  color: #e53935;
+}
+
+.camera-button {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 65%);
+  cursor: pointer;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.camera-button:hover {
+  transform: scale(1.08);
+  background: #fff;
+}
+
+.camera-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 4px;
+}
+
+.camera {
+  width: 2rem;
+  height: auto;
+  fill: none;
+  stroke: #222;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+.camera .lens {
+  fill: #1677ff;
+  stroke: none;
+}
+
+.saved-pictures-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgb(34 34 34 / 12%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 72%);
+  color: #222;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.saved-pictures-button:hover {
+  transform: translateY(-1px);
+  background: #fff;
+}
+
+.saved-pictures-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 3px;
+}
+
+.saved-pictures-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.handwriting-trainer-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgb(34 34 34 / 12%);
+  border-radius: 999px;
+  background: rgb(20 84 186 / 90%);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.handwriting-trainer-button:hover {
+  transform: translateY(-1px);
+  background: #0d4fb8;
+}
+
+.handwriting-trainer-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 3px;
+}
+
+.handwriting-trainer-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.camera-dialog {
+  width: min(92vw, 38rem);
+  max-height: 90vh;
+  max-height: min(90vh, 90dvh);
+  padding: 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  color: #222;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+.help-dialog {
+  width: min(92vw, 46rem);
+  max-height: 90vh;
+  max-height: min(90vh, 90dvh);
+  padding: 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  color: #222;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+.camera-dialog::backdrop {
+  background: rgb(18 26 40 / 65%);
+}
+
+.gallery-dialog {
+  width: min(92vw, 56rem);
+  max-height: 90vh;
+  max-height: min(90vh, 90dvh);
+  padding: 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  color: #222;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+.gallery-dialog::backdrop {
+  background: rgb(18 26 40 / 65%);
+}
+
+.handwriting-dialog {
+  width: min(92vw, 40rem);
+  max-height: 90vh;
+  max-height: min(90vh, 90dvh);
+  padding: 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  color: #222;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 25%);
+}
+
+.handwriting-dialog::backdrop {
+  background: rgb(18 26 40 / 65%);
+}
+
+.help-dialog::backdrop {
+  background: rgb(18 26 40 / 65%);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.close-button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f2f5;
+  color: #222;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.gallery-close-button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f2f5;
+  color: #222;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.gallery-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.gallery-status {
+  flex: 1 1 100%;
+  margin: 0;
+  color: #4b5563;
+}
+
+.gallery-image-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.gallery-upload-button {
+  display: inline-flex;
+  min-height: 2.4rem;
+  align-items: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: #1677ff;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gallery-upload-button:hover {
+  background: #095fcf;
+}
+
+.gallery-image-input:focus-visible + .gallery-upload-button,
+.gallery-upload-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 3px;
+}
+
+.gallery-folder-button {
+  min-height: 2.4rem;
+  padding: 0.55rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #123a80;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gallery-folder-button:hover {
+  background: #dfeeff;
+}
+
+.gallery-folder-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 3px;
+}
+
+.handwriting-status {
+  margin: 0.75rem 0;
+  color: #4b5563;
+  font-size: 0.92rem;
+}
+
+.handwriting-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.85rem 0 1rem;
+}
+
+.handwriting-letter-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #123a80;
+  font-weight: 700;
+}
+
+.handwriting-letter-select {
+  min-height: 2.35rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #cfe0ff;
+  border-radius: 0.6rem;
+  background: #fff;
+  color: #1f2a37;
+  font: inherit;
+}
+
+.handwriting-action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.handwriting-clear-button,
+.handwriting-save-button,
+.handwriting-recognize-button,
+.handwriting-clear-all-button,
+.handwriting-close-button {
+  min-height: 2.35rem;
+  padding: 0.55rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.handwriting-close-button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: #f0f2f5;
+  color: #222;
+  font-size: 1.5rem;
+  padding: 0;
+}
+
+.help-close-button {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f2f5;
+  color: #222;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.help-close-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 2px;
+}
+
+.help-content {
+  color: #354052;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.help-content h3 {
+  margin: 1.25rem 0 0.4rem;
+  color: #163d78;
+  font-size: 1.1rem;
+}
+
+.help-content p {
+  margin: 0.65rem 0;
+}
+
+.help-content ol,
+.help-content ul {
+  padding-left: 1.4rem;
+}
+
+.help-content li + li {
+  margin-top: 0.45rem;
+}
+
+.help-content .help-intro {
+  margin-top: 1rem;
+  color: #163d78;
+  font-size: 1.1rem;
+}
+
+.handwriting-clear-button,
+.handwriting-clear-all-button {
+  background: #eef2f7;
+  color: #222;
+}
+
+.handwriting-save-button,
+.handwriting-recognize-button {
+  background: #1677ff;
+  color: #fff;
+}
+
+.handwriting-canvas-wrap {
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  border: 1px solid #dfeaf8;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #f2f8ff 100%);
+}
+
+.handwriting-canvas {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  aspect-ratio: 1;
+  border: 2px solid #d9e8ff;
+  border-radius: 1rem;
+  background: #fff;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.handwriting-preview-block {
+  margin-top: 1rem;
+}
+
+.handwriting-preview-block h3 {
+  margin: 0 0 0.6rem;
+  color: #163d78;
+  font-size: 1rem;
+}
+
+.handwriting-letter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.handwriting-letter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.5rem;
+  border: 1px solid #dfeaf8;
+  border-radius: 0.8rem;
+  background: #f8fbff;
+}
+
+.handwriting-letter-card canvas {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 0.6rem;
+  background: #fff;
+}
+
+.handwriting-letter-card span {
+  color: #123a80;
+  font-weight: 700;
+}
+
+.handwriting-letter-card small {
+  color: #4b5563;
+}
+
+.handwriting-empty-state {
+  margin: 0;
+  color: #4b5563;
+}
+
+.handwriting-bottom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.picture-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+  max-height: 65vh;
+  max-height: 65dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.saved-picture {
+  overflow: hidden;
+  border: 1px solid #e2e6eb;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+}
+
+.saved-picture img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #e9edf2;
+}
+
+.saved-picture p {
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding: 0.65rem;
+  font-size: 0.8rem;
+}
+
+.gallery-convert-button,
+.gallery-copy-button,
+.gallery-share-button,
+.gallery-delete-button {
+  min-height: 2.35rem;
+  margin: 0 0.65rem 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: #eaf2ff;
+  color: #123a80;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gallery-delete-button {
+  background: #fff0f0;
+  color: #a32121;
+}
+
+.gallery-convert-button:hover,
+.gallery-copy-button:hover,
+.gallery-share-button:hover {
+  background: #dfeeff;
+}
+
+.gallery-delete-button:hover {
+  background: #ffe0e0;
+}
+
+.gallery-convert-button:focus-visible,
+.gallery-copy-button:focus-visible,
+.gallery-share-button:focus-visible,
+.gallery-delete-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 2px;
+}
+
+.gallery-convert-button:disabled,
+.gallery-delete-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.gallery-ocr-output {
+  display: block;
+  width: calc(100% - 1.3rem);
+  min-height: 5rem;
+  margin: 0 0.65rem 0.65rem;
+  padding: 0.55rem;
+  border: 1px solid #d7e0eb;
+  border-radius: 0.5rem;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.output-size-button {
+  min-height: 2.2rem;
+  margin: 0 0.65rem 0.65rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #cfe0ff;
+  border-radius: 0.55rem;
+  background: #fff;
+  color: #163d78;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.output-size-button:hover {
+  background: #eaf2ff;
+}
+
+.output-size-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 2px;
+}
+
+.gallery-ocr-output.is-maximized,
+.camera-ocr-output.is-maximized {
+  height: min(60vh, 40rem);
+  min-height: min(60vh, 40rem);
+}
+
+.soft-copy-preview {
+  overflow: hidden;
+  border: 1px solid #dfeaf8;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, rgb(255 255 255 / 92%), rgb(230 240 255 / 92%));
+  box-shadow: 0 0.6rem 1.5rem rgb(22 119 255 / 10%);
+}
+
+.soft-copy-preview img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #f6fbff, #edf0ff);
+}
+
+.soft-copy-preview p {
+  margin: 0;
+  padding: 0.7rem 0.85rem 0.9rem;
+  text-align: center;
+  color: #35507a;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.camera-status {
+  min-height: 1.25em;
+  margin: 0.75rem 0;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.camera-preview {
+  overflow: hidden;
+  display: grid;
+  min-height: 12rem;
+  place-items: center;
+  border-radius: 0.75rem;
+  background: #111;
+}
+
+.camera-video,
+.camera-canvas {
+  display: block;
+  width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+}
+
+.camera-soft-copy {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border: 1px solid #dfeaf8;
+  border-radius: 0.9rem;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+}
+
+.camera-soft-copy h3 {
+  margin: 0 0 0.5rem;
+  color: #163d78;
+  font-size: 1rem;
+}
+
+.text-format-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+}
+
+.format-button {
+  min-height: 2.2rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid #cfe0ff;
+  border-radius: 999px;
+  background: #fff;
+  color: #163d78;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.format-button.is-active {
+  background: #1677ff;
+  border-color: #1677ff;
+  color: #fff;
+}
+
+.format-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 2px;
+}
+
+.camera-ocr-output {
+  display: block;
+  width: 100%;
+  min-height: 7rem;
+  padding: 0.75rem;
+  border: 1px solid #cfe0ff;
+  border-radius: 0.7rem;
+  background: #fff;
+  color: #1e2b3d;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.camera-soft-copy .output-size-button {
+  margin: 0 0 0.5rem;
+}
+
+.camera-copy-button {
+  min-height: 2.6rem;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #123a80;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.camera-share-button {
+  min-height: 2.6rem;
+  margin: 0.75rem 0 0 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #123a80;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.camera-copy-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 3px;
+}
+
+.camera-share-button:focus-visible {
+  outline: 3px solid #1677ff;
+  outline-offset: 3px;
+}
+
+.ocr-panel {
+  margin-top: 1rem;
+  border: 1px solid #dfeaf8;
+  border-radius: 0.9rem;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  padding: 0.9rem;
+}
+
+.ocr-panel h3 {
+  margin: 0 0 0.5rem;
+  color: #163d78;
+  font-size: 1rem;
+}
+
+.ocr-output {
+  width: 100%;
+  min-height: 7rem;
+  resize: vertical;
+  border: 1px solid #cfe0ff;
+  border-radius: 0.7rem;
+  background: #fff;
+  color: #1e2b3d;
+  font: inherit;
+  line-height: 1.5;
+  padding: 0.75rem;
+}
+
+.ocr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.ocr-button,
+.copy-text-button {
+  min-height: 2.6rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ocr-button {
+  background: #1677ff;
+  color: #fff;
+}
+
+.copy-text-button {
+  background: #eaf2ff;
+  color: #123a80;
+}
+
+.camera-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.camera-actions button {
+  min-height: 2.6rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.folder-button,
+.retake-button {
+  background: #eef2f7;
+  color: #222;
+}
+
+.capture-button {
+  background: #1677ff;
+  color: #fff;
+}
+
+.camera-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.help-button {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  min-height: 2.75rem;
+  padding: 0.65rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #1677ff;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 18%);
+}
+
+.help-button:hover {
+  background: #095fcf;
+}
+
+.help-button:focus-visible {
+  outline: 3px solid #222;
+  outline-offset: 3px;
+}
+
+@media (max-width: 30rem) {
+  .camera-dialog,
+  .gallery-dialog,
+  .handwriting-dialog,
+  .help-dialog {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: calc(1rem + env(safe-area-inset-top)) 1rem
+      calc(1rem + env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+
+  .page {
+    gap: 1.1rem;
+  }
+
+  .saved-pictures-button,
+  .handwriting-trainer-button {
+    min-height: 2.75rem;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .camera-preview {
+    min-height: 8rem;
+  }
+
+  .camera-video,
+  .camera-canvas {
+    max-height: 42dvh;
+  }
+
+  .camera-actions {
+    flex-direction: column;
+  }
+
+  .camera-actions button,
+  .help-close-button,
+  .gallery-upload-button,
+  .gallery-folder-button,
+  .gallery-convert-button,
+  .gallery-copy-button,
+  .gallery-share-button,
+  .gallery-delete-button,
+  .output-size-button,
+  .format-button,
+  .handwriting-clear-button,
+  .handwriting-save-button,
+  .handwriting-recognize-button,
+  .handwriting-clear-all-button {
+    min-height: 2.75rem;
+  }
+
+  .camera-actions button {
+    width: 100%;
+  }
+
+  .text-format-controls {
+    gap: 0.4rem;
+  }
+
+  .gallery-toolbar {
+    justify-content: stretch;
+  }
+
+  .gallery-upload-button,
+  .gallery-folder-button {
+    flex: 1 1 8rem;
+    justify-content: center;
+  }
+
+  .picture-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr));
+    max-height: none;
+  }
+
+  .gallery-ocr-output {
+    font-size: 16px;
+  }
+
+  .handwriting-action-group,
+  .handwriting-bottom-actions {
+    width: 100%;
+  }
+
+  .handwriting-action-group button,
+  .handwriting-bottom-actions button {
+    flex: 1 1 auto;
+  }
+
+  .help-button {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+button,
+select,
+.gallery-upload-button {
+  touch-action: manipulation;
+}
